@@ -11,7 +11,7 @@ import Charts
 
 class GraphViewController: UIViewController {
     
-    
+    var healthStore: HKHealthStore?
     lazy var lineChartView: LineChartView = {
             let charView = LineChartView()
                 charView.backgroundColor = .white
