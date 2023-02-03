@@ -28,14 +28,15 @@ class ResultViewController: UIViewController, UITableViewDataSource, SFSafariVie
     }
 
     @IBOutlet weak var tableView: UITableView!
-    let word = UserDefaults.standard.string(forKey: "WantedInformation")
     var InfoList: [(title: String, url: URL, urlToImage: URL)] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
-        SearchInfo(keyword: word)
+        if let words = UserDefaults.standard.string(forKey: "WantedInformation") {
+          SearchInfo(keyword: words)
+        }
     }
     
     func SearchInfo(keyword: String) {
@@ -48,7 +49,7 @@ class ResultViewController: UIViewController, UITableViewDataSource, SFSafariVie
         
         let req = URLRequest(url: req_url)
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
-        let task = session.dataTask(with: req, completionHandler: { (data, response,error) in
+        let task = session as URLSession.dataTask;(with: req, completionHandler: { (data, response, error) in
             session.finishTasksAndInvalidate()
             do {
                 let decoder = JSONDecoder()

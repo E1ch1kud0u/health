@@ -6,5 +6,6 @@ target 'HealthKitEdition' do
   use_frameworks!
 
   # Pods for HealthKitEdition
-  pod 'Charts'
+
+  #pod 'Charts'
 end
